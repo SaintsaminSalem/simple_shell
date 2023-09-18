@@ -126,22 +126,22 @@ char *find_command_path(info_t *info, char *pathstr, char *cmd);
 int loophsh(char **);
 
 /* errors.c */
-void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+void print_to_stderr(char *str);
+int write_char_to_stderr(char c);
+int write_char_to_fd(char c, int fd);
+int print_to_fd(char *str, int fd);
 
 /* string.c */
-int _strlen(char *);
-int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
+int string_length(char *str);
+int string_compare(char *str1, char *str2);
+char *string_starts_with(const char *haystack, const char *needle);
+char *string_concatenate(char *destination, char *source);
 
 /* string1.c */
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
-void _puts(char *);
-int _putchar(char);
+char *string_copy(char *destination, const char *source);
+char *string_duplicate(const char *str);
+void print_string(char *str);
+int write_char(char c);
 
 /* exits.c */
 char *_strncpy(char *, char *, int);
