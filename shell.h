@@ -144,13 +144,13 @@ void print_string(char *str);
 int write_char(char c);
 
 /* exits.c */
-char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
-char *_strchr(char *, char);
+char *copy_string(char *destination, char *source, int n);
+char *concatenate_string(char *destination, char *source, int n);
+char *find_character(char *str, char c);
 
 /* tokenizer.c */
-char **strtow(char *, char *);
-char **strtow2(char *, char);
+char **split_string(char *str, char *delimiters);
+char **split_string2(char *str, char delimiter);
 
 /* realloc.c */
 char *_memset(char *, char, unsigned int);
