@@ -158,7 +158,7 @@ void free_string_array(char **str_array);
 void *custom_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 /* memory.c */
-int bfree(void **);
+int free_and_null_ptr(void **ptr);
 
 /* atoi.c */
 int interactive(info_t *);
