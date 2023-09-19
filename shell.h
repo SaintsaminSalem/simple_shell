@@ -161,17 +161,17 @@ void *custom_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int free_and_null_ptr(void **ptr);
 
 /* atoi.c */
-int interactive(info_t *);
-int is_delim(char, char *);
-int _isalpha(int);
-int _atoi(char *);
+int is_shell_interactive(info_t *info);
+int is_character_delimiter(char c, char *delimiters);
+int is_alpha_character(int c);
+int string_to_integer(char *s);
 
 /* errors1.c */
-int _erratoi(char *);
-void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+int string_to_integer_err(char *s);
+void print_shell_error(info_t *info, char *error_message);
+int print_line_number(int line_number, int fd);
+char *convert_to_string(long int num, int base, int flags);
+void remove_first_comment(char *buf);
 
 /* builtin.c */
 int _theexit(info_t *);
