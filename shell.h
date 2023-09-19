@@ -153,9 +153,9 @@ char **split_string(char *str, char *delimiters);
 char **split_string2(char *str, char delimiter);
 
 /* realloc.c */
-char *_memset(char *, char, unsigned int);
-void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
+char *_memory_set(char *ptr, char byte, unsigned int size);
+void free_string_array(char **str_array);
+void *custom_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 /* memory.c */
 int bfree(void **);
