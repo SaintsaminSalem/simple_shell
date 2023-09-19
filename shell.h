@@ -179,8 +179,11 @@ int _thecd(info_t *);
 int _thehelp(info_t *);
 
 /* builtin1.c */
-int _thehistory(info_t *);
-int _thealias(info_t *);
+int history_command(info_t *info);
+int unset_alias_command(info_t *info, char *alias);
+int set_alias_command(info_t *info, char *alias);
+int print_alias_command(char *alias);
+int alias_command(info_t *info);
 
 /* getline.c */
 ssize_t get_input(info_t *);
