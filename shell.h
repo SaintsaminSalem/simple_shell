@@ -186,53 +186,55 @@ int print_alias_command(char *alias);
 int alias_command(info_t *info);
 
 /* getline.c */
-ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
-void sigintHandler(int);
+ssize_t buffer_input(info_t *info, char **buf, size_t *len);
+ssize_t get_input(info_t *info);
+ssize_t read_buffer(info_t *info, char *buf, size_t *i);
+int custom_getline(info_t *info, char **ptr, size_t *length);
+void block_ctrl_c(__attribute__((unused))int sig_num);
 
 /* getinfo.c */
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
+void initializeInfo(info_t *info);
+void populateInfo(info_t *info, char **av);
+void freeInfo(info_t *info, int all);
 
 /* environ.c */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+int printEnvironment(info_t *info);
+char *getEnvironment(info_t *info, const char *name);
+int setEnvironment(info_t *info);
+int unsetEnvironment(info_t *info);
+int populateEnvironmentList(info_t *info);
 
 /* getenv.c */
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+char **copyEnvironment(info_t *info);
+int unsetEnvironmentVariable(info_t *info, char *var);
+int setEnvironmentVariable(info_t *info, char *var, char *value);
 
 /* history.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+char *getHistoryFile(info_t *info);
+int readHistoryFromFile(info_t *info);
+int buildHistoryList(info_t *info, char *buf, int linecount);
+int renumberHistory(info_t *info);
+int writeHistoryToFile(info_t *info);
 
 /* lists.c */
-list_t *add_node(list_t **, const char *, int);
-list_t *add_node_end(list_t **, const char *, int);
-size_t print_list_str(const list_t *);
-int delete_node_at_index(list_t **, unsigned int);
-void free_list(list_t **);
+list_t *addNode(list_t **head, const char *str, int num);
+list_t *addNodeEnd(list_t **head, const char *str, int num);
+size_t printListStr(const list_t *h);
+int deleteNodeAtIndex(list_t **head, unsigned int index);
+void freeList(list_t **headPtr);
 
 /* lists1.c */
-size_t list_len(const list_t *);
-char **list_to_strings(list_t *);
-size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *, list_t *);
+size_t getListLength(const list_t *h);
+char **listToStrings(list_t *head);
+size_t printListContents(const list_t *h);
+list_t *findNodeWithPrefix(list_t *node, char *prefix, char c);
+ssize_t getNodeIndex(list_t *head, list_t *node);
 
 /* vars.c */
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
+int isCommandChainDelimiter(info_t *info, char *buf, size_t *p);
+void checkChainStatus(info_t *info, char *buf, size_t *p, size_t i, size_t len);
+int replaceAliases(info_t *info);
+int replaceVariables(info_t *info);
+int replaceString(char **old, char *new);
 
 #endif
